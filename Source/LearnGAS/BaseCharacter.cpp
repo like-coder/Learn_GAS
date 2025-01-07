@@ -16,6 +16,11 @@ void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UAbilitySystemComponent* MyAbilitySystemComponent = this->FindComponentByClass<UAbilitySystemComponent>();
+	if (MyAbilitySystemComponent->IsValidLowLevel())
+	{
+		MyAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetHPAttribute()).AddUObject(this, &ABaseCharacter::OnHealthAttributeChanged);
+	}
 }
 
 // Called every frame
@@ -32,3 +37,7 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void ABaseCharacter::OnHealthAttributeChanged(const FOnAttributeChangeData& Data)
+{
+	HPChangeEvent.Broadcast(Data.NewValue);
+}
