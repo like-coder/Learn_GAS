@@ -39,5 +39,5 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void ABaseCharacter::OnHealthAttributeChanged(const FOnAttributeChangeData& Data)
 {
-	HPChangeEvent.Broadcast(Data.NewValue);
+	HPChangeEvent.Broadcast(Data.NewValue, Data.OldValue);
 }

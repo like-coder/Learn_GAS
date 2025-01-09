@@ -7,8 +7,7 @@
 #include "BaseAttributeSet.h"
 #include "BaseCharacter.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangeEvent, float, NewValue);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangeEvent, float, NewValue, float, OldValue);
 UCLASS()
 class LEARNGAS_API ABaseCharacter : public ACharacter
 {
