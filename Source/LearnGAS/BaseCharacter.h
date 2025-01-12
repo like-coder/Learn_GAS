@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "BaseGameplayAbility.h"
 #include "BaseAttributeSet.h"
 #include "BaseCharacter.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangeEvent, float, NewValue, float, OldValue);
+
 UCLASS()
 class LEARNGAS_API ABaseCharacter : public ACharacter
 {
@@ -32,4 +34,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Ability")
 	FOnHealthChangeEvent HPChangeEvent;
+
+	UFUNCTION(BlueprintCallable, Category = "BaseCharacter")
+	FGameplayAbilityInfo GameplayAbilityInfo(TSubclassOf<UBaseGameplayAbility> AbilityClass, int level);
 };

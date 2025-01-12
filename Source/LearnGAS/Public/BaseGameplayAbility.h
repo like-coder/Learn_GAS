@@ -15,6 +15,7 @@ enum class ECostType : uint8
 	Strength
 };
 
+//技能信息结构体
 USTRUCT(BlueprintType)
 struct FGameplayAbilityInfo
 {
