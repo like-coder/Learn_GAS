@@ -15,11 +15,11 @@ void UBaseAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 	if (Data.EvaluatedData.Attribute == GetMPAttribute())
 	{
-		SetHP(FMath::Clamp(GetHP(), 0.0, GetMaxMP()));
+		SetMP(FMath::Clamp(GetMP(), 0.0, GetMaxMP()));
 	}
 
 	if (Data.EvaluatedData.Attribute == GetStrengthAttribute())
 	{
-		SetHP(FMath::Clamp(GetHP(), 0.0, GetMaxStrength()));
+		SetStrength(FMath::Clamp(GetStrength(), 0.0, GetMaxStrength()));
 	}
 }
