@@ -20,6 +20,7 @@ void ABaseCharacter::BeginPlay()
 	if (MyAbilitySystemComponent->IsValidLowLevel())
 	{
 		MyAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetHPAttribute()).AddUObject(this, &ABaseCharacter::OnHealthAttributeChanged);
+		MyAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetMPAttribute()).AddUObject(this, &ABaseCharacter::OnMPAttributeChanged);
 		MyAbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetStrengthAttribute()).AddUObject(this, &ABaseCharacter::OnStrengthAttributeChanged);
 	}
 }
@@ -41,6 +42,11 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ABaseCharacter::OnHealthAttributeChanged(const FOnAttributeChangeData& Data)
 {
 	HPChangeEvent.Broadcast(Data.NewValue, Data.OldValue);
+}
+
+void ABaseCharacter::OnMPAttributeChanged(const FOnAttributeChangeData& Data)
+{
+	MPChangeEvent.Broadcast(Data.NewValue, Data.OldValue);
 }
 
 void ABaseCharacter::OnStrengthAttributeChanged(const FOnAttributeChangeData& Data)

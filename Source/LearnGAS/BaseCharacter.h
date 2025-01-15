@@ -32,10 +32,15 @@ public:
 
 	void OnHealthAttributeChanged(const FOnAttributeChangeData& Data);
 
+	void OnMPAttributeChanged(const FOnAttributeChangeData& Data);
+
 	void OnStrengthAttributeChanged(const FOnAttributeChangeData& Data);
 
 	UPROPERTY(BlueprintAssignable, Category = "Ability")
 	FOnHealthChangeEvent HPChangeEvent;
+
+	UPROPERTY(BlueprintAssignable, Category = "Ability")
+	FOnHealthChangeEvent MPChangeEvent;
 
 	UPROPERTY(BlueprintAssignable, Category = "Ability")
 	FOnHealthChangeEvent StrengthChangeEvent;
