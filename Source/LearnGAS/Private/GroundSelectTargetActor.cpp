@@ -12,7 +12,7 @@ void AGroundSelectTargetActor::StartTargeting(UGameplayAbility* Ability)
 
 void AGroundSelectTargetActor::ConfirmTargetingAndContinue()
 {
-	Super::ConfirmTargetingAndContinue();
+	//Super::ConfirmTargetingAndContinue();
 	FVector LookPoint;
 	GetPlayerLookAtPoint(LookPoint);
 	TArray<FOverlapResult> OverlapResults;
@@ -43,18 +43,18 @@ void AGroundSelectTargetActor::ConfirmTargetingAndContinue()
 	}
 
 	FGameplayAbilityTargetDataHandle TargetDataHandle;
-	TSharedPtr<FGameplayAbilityTargetData_LocationInfo> CenterLoc = MakeShareable(new FGameplayAbilityTargetData_LocationInfo());
+	FGameplayAbilityTargetData_LocationInfo* CenterLoc = new FGameplayAbilityTargetData_LocationInfo();
 	CenterLoc->TargetLocation.LiteralTransform = FTransform(LookPoint);
 	CenterLoc->TargetLocation.LocationType = EGameplayAbilityTargetingLocationType::LiteralTransform;
 	//0∫≈∏∫‘ÿ
-	TargetDataHandle.Add(CenterLoc.Get());
+	TargetDataHandle.Add(CenterLoc);
 
 	if (OverlapActors.Num() > 0)
 	{
-		TSharedPtr<FGameplayAbilityTargetData_LocationInfo> ActorArray = MakeShareable(new FGameplayAbilityTargetData_LocationInfo());
+		FGameplayAbilityTargetData_ActorArray* ActorArray = new FGameplayAbilityTargetData_ActorArray();
 		ActorArray->SetActors(OverlapActors);
 		//1∫≈∏∫‘ÿ
-		TargetDataHandle.Add(ActorArray.Get());
+		TargetDataHandle.Add(ActorArray);
 	}
 
 	check(ShouldProduceTargetData());

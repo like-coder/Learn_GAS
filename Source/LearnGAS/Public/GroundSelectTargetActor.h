@@ -19,6 +19,7 @@ public:
 
 	virtual void ConfirmTargetingAndContinue() override;
 
+	UFUNCTION(BlueprintCallable, Category = "GroundSelect")
 	bool GetPlayerLookAtPoint(FVector& Out_LookPoint);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ExposeOnSpawn = true), Category = "GroundSelect")
