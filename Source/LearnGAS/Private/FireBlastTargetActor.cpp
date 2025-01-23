@@ -13,7 +13,7 @@ void AFireBlastTargetActor::StartTargeting(UGameplayAbility* Ability)
 void AFireBlastTargetActor::ConfirmTargetingAndContinue()
 {
 	APawn* SelfPawn = PrimaryPC->GetPawn();
-	if (SelfPawn->IsValidLowLevel())
+	if (!SelfPawn->IsValidLowLevel())
 	{
 		return;
 	}
@@ -42,17 +42,11 @@ void AFireBlastTargetActor::ConfirmTargetingAndContinue()
 	}
 
 	FGameplayAbilityTargetDataHandle TargetDataHandle;
-	FGameplayAbilityTargetData_LocationInfo* CenterLoc = new FGameplayAbilityTargetData_LocationInfo();
-	CenterLoc->TargetLocation.LiteralTransform = FTransform(SelfPawn->GetActorLocation());
-	CenterLoc->TargetLocation.LocationType = EGameplayAbilityTargetingLocationType::LiteralTransform;
-	//0∫≈∏∫‘ÿ
-	TargetDataHandle.Add(CenterLoc);
-
 	if (OverlapActors.Num() > 0)
 	{
 		FGameplayAbilityTargetData_ActorArray* ActorArray = new FGameplayAbilityTargetData_ActorArray();
 		ActorArray->SetActors(OverlapActors);
-		//1∫≈∏∫‘ÿ
+		//0∫≈∏∫‘ÿ
 		TargetDataHandle.Add(ActorArray);
 	}
 
